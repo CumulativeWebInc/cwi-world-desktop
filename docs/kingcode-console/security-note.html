@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KingCode Console — Security Note</title>
+<style>
+body { font-family: -apple-system, "Segoe UI", sans-serif; max-width: 640px; margin: 32px auto; padding: 0 20px; color: #1a1a1a; line-height: 1.6; }
+h1 { font-size: 22px; } h2 { font-size: 16px; margin-top: 24px; }
+code { background: #f0f0f0; padding: 1px 6px; border-radius: 4px; }
+.warn { background: #fff4e0; border: 1px solid #e0a800; border-radius: 8px; padding: 12px 16px; }
+.ok { background: #e8f7ee; border: 1px solid #2e9e5b; border-radius: 8px; padding: 12px 16px; }
+footer { margin-top: 32px; font-size: 12px; color: #666; }
+</style>
+</head>
+<body>
+<h1>🛡 KingCode Console — honest security note</h1>
+<p>Read this once. It says what the console protects, and what it does <em>not</em>.</p>
+
+<h2>What stays on your laptop</h2>
+<div class="ok">
+<ul>
+<li>Your voice: recognition (Vosk) runs <b>on this machine</b>. Audio is never sent anywhere for speech recognition.</li>
+<li>Your voiceprint embedding: stored <b>only here</b>, encrypted with AES-256 (key in your OS keychain).</li>
+<li>Your PIN hash, authorization audit log, and ping inbox: same — local and encrypted.</li>
+</ul>
+</div>
+
+<h2>What leaves your laptop</h2>
+<div class="warn">
+<ul>
+<li><b>Your words to KingCode through the chat tab leave the machine</b> — that's how I (the agent) receive them, same as chatting in a browser. The chat tab is a window into the normal Muse chat, with its normal privacy.</li>
+<li>Anything you ask me to publish, send, or look up goes out by definition — that's the job, and sensitive ones always ask for your tap first.</li>
+</ul>
+</div>
+
+<h2>The recording attack — stated plainly</h2>
+<div class="warn">
+<p><b>A recording of your voice can fool the voiceprint.</b> This is true of every consumer voice-verification system, including this one. That is exactly why:</p>
+<ul>
+<li><b>Voice alone NEVER authorizes sensitive actions.</b> Publishing, credentials, logins, money, wallet signing, external sends — these always require your in-app tap (plus PIN if you set one). This is enforced in code, not policy.</li>
+<li>Voiceprint unlocks <b>routine</b> commands only (status checks, navigation, questions).</li>
+<li>A stolen recording can at most make the console <em>talk</em> — it cannot make it <em>spend, sign, or publish</em>.</li>
+<li>Challenge-response (Security tab) raises the bar for elevated moments: you repeat random digits, so a fixed recording won't pass.</li>
+</ul>
+</div>
+
+<h2>Privacy tiers &amp; presenter mode</h2>
+<ul>
+<li>Everything the world renders is tiered <code>PUBLIC</code> / <code>PRIVATE</code> / <code>SECRET</code>. New content types default to <code>PRIVATE</code>.</li>
+<li><code>PRIVATE</code>/<code>SECRET</code> render as <code>•••</code> until your voice verifies or you tap/PIN.</li>
+<li><b>Presenter mode</b> (🎥 button, or <code>Ctrl+Shift+P</code>) instantly hides every non-public panel and enables OS-level capture protection. Use it for screen shares, demos, streams, or anyone looking over your shoulder.</li>
+<li>OS screenshots taken <em>outside</em> the app are outside the app's control — presenter mode is the mitigation. Turn it on before you share your screen.</li>
+</ul>
+
+<h2>Your controls</h2>
+<ul>
+<li>Wake word can be toggled off — the mic button still works.</li>
+<li>Delete your voiceprint any time (Security tab) — one tap, gone from the laptop.</li>
+<li>The authorization audit log shows every allow/deny decision the console made.</li>
+</ul>
+
+<footer>© 2026 Cumulative Web Inc. All rights reserved. KingCode Console v2.</footer>
+</body>
+</html>
